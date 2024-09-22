@@ -19,6 +19,9 @@ class Employee(db.Model):
     name = db.Column(db.String)
     hire_date = db.Column(db.Date)
 
+    # Relationship mapping the employee to related reviews
+    reviews = db.relationship('Review')
+
     def __repr__(self):
         return f"<Employee {self.id}, {self.name}, {self.hire_date}>"
 
@@ -40,7 +43,7 @@ class Review(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     year = db.Column(db.Integer)
     summary = db.Column(db.String)
-    
+
     # Foreign key stores the Employee id
     employee_id = db.Column(db.Integer, db.ForeignKey('employees.id'))
 
